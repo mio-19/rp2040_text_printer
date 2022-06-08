@@ -10,6 +10,16 @@
 
 #define BTN_PIN 9
 
+#define I2C_X i2c1
+#define SDA_PIN 2
+#define SCL_PIN 3
+
+/*
+#define I2C_X i2c0
+#define SDA_PIN 12
+#define SCL_PIN 13
+*/
+
 ssd1306_t disp;
 void init() {
     stdio_init_all();
@@ -18,13 +28,13 @@ void init() {
     gpio_set_dir(BTN_PIN, GPIO_IN);
     gpio_pull_up(BTN_PIN);
 
-    i2c_init(i2c1, 400000);
-    gpio_set_function(2, GPIO_FUNC_I2C);
-    gpio_set_function(3, GPIO_FUNC_I2C);
-    gpio_pull_up(2);
-    gpio_pull_up(3);
+    i2c_init(I2C_X, 400000);
+    gpio_set_function(SDA_PIN, GPIO_FUNC_I2C);
+    gpio_set_function(SCL_PIN, GPIO_FUNC_I2C);
+    gpio_pull_up(SDA_PIN);
+    gpio_pull_up(SCL_PIN);
     disp.external_vcc=false;
-    ssd1306_init(&disp, 128, 32, 0x3C, i2c1);
+    ssd1306_init(&disp, 128, 32, 0x3C, I2C_X);
     ssd1306_clear(&disp);
 }
 

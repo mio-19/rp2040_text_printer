@@ -1,0 +1,3 @@
+[submodule "src/u8g2_wqy"]
+	path = src/u8g2_wqy
+	url = https://github.com/larryli/u8g2_wqy.git
